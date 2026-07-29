@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/this-oliver/simple-web-app/compare/v1.0.0...v1.0.1) (2026-07-29)
+
+
+### Bug Fixes
+
+* **container:** unable to create logs ([47a573d](https://github.com/this-oliver/simple-web-app/commit/47a573de56e7c43fc829b0ad3a8b1a6285affd4c))
+
 ## 1.0.0 (2026-07-29)
 
 
