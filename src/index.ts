@@ -1,3 +1,5 @@
+import type { Express } from "express";
+import type { Server } from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -23,7 +25,7 @@ function writeToLogfile(filepath: string, content: string): void {
   fs.appendFileSync(filepath, content);
 }
 
-function initApp(port: number, logfile: string) {
+function initApp(logfile: string): Express {
   initLogfile(logfile);
 
   const app = express();
@@ -99,10 +101,19 @@ function initApp(port: number, logfile: string) {
       </table>`);
   });
 
-  app.listen(port, () => {
-    // eslint-disable-next-line no-console
-    console.info(`Example app listening on port ${port}`);
-  });
+  return app;
 }
 
-initApp(PORT, LOGS_FILEPATH);
+function shutdown(signal: string, server: Server): void {
+  // eslint-disable-next-line no-console
+  console.info(`\n${signal} received, shutting down...`);
+  server.close(() => process.exit(0));
+};
+
+const app: Express = initApp(LOGS_FILEPATH);
+const server: Server = app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.info(`Listening on port ${PORT}`);
+});
+process.on("SIGTERM", () => shutdown("SIGTERM", server));
+process.on("SIGINT", () => shutdown("SIGINT", server));
