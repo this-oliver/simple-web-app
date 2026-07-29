@@ -14,4 +14,6 @@ RUN pnpm build
 ENV PORT=3000
 EXPOSE ${PORT}
 
+USER 1001
+
 CMD [ "node", "dist/index.js" ]
