@@ -16,12 +16,24 @@ To build the container image, run:
 podman build -t simple-web-server .
 ```
 
+Alternatively, you can pull the container image from the GitHub Container Regsitry (GHCR):
+
+```bash
+podman pull ghcr.io/this-oliver/simple-web-app
+```
+
 ## Usage
 
 To start the simple webserver, run:
 
 ```bash
 podman run --rm -p 3000:3000 simple-web-server
+```
+
+Alternatively, you can run the simple web server directly from the GHCR:
+
+```bash
+podman run --rm -p 3000:3000 ghcr.io/this-oliver/simple-web-app
 ```
 
 To reach the server, visit [http://localhost:3000](http://localhost:3000).
