@@ -8,15 +8,22 @@
     "node": ">=23.8.0"
   },
   "scripts": {
+    "start": "node dist/index.js",
     "build": "rm -rf dist && tsc",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky"
   },
+  "dependencies": {
+    "express": "^5.2.1",
+    "helmet": "^8.3.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^9.0.0",
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.2",
     "eslint": "^10.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
