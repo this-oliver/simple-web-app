@@ -84,8 +84,8 @@ function initApp(logfile: string): Express {
       </tr>`).join("\n");
 
     res.send(`
-      <h1>Simple Web App</h1>
-      <p>This simple web app keeps track of its visitors</p>
+      <h1>Guestbook</h1>
+      <p>We hope you enjoyed your visit and look forward to your returns.</p>
       <table border="1" cellpadding="6" style="border-collapse:collapse;font-family:monospace">
         <thead>
           <tr>
