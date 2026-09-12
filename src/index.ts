@@ -29,7 +29,13 @@ function initApp(logfile: string): Express {
   initLogfile(logfile);
 
   const app = express();
-  app.use(helmet());
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        scriptSrc: ["'self'", "'unsafe-inline'"]
+      }
+    }
+  }));
 
   app.use((req, _res, next) => {
     const srcIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
@@ -84,6 +90,11 @@ function initApp(logfile: string): Express {
       </tr>`).join("\n");
 
     res.send(`
+      <style>
+        th { cursor: pointer; user-select: none; }
+        th:hover { background-color: #f0f0f0; }
+        th .arrow { font-size: 0.7em; }
+      </style>
       <h1>Guestbook</h1>
       <p>We hope you enjoyed your visit and look forward to your returns.</p>
       <table border="1" cellpadding="6" style="border-collapse:collapse;font-family:monospace">
@@ -98,7 +109,45 @@ function initApp(logfile: string): Express {
           </tr>
         </thead>
         <tbody>${tableRows}</tbody>
-      </table>`);
+      </table>
+      <script>
+        const table = document.querySelector("table");
+        const tbody = table.querySelector("tbody");
+        const headers = [...table.querySelectorAll("th")];
+
+        const NUMERIC_COLS = new Set([2]);
+
+        function cellValue(row, index) {
+          const text = row.cells[index].textContent.trim();
+          return NUMERIC_COLS.has(index) ? Number(text) : text;
+        }
+
+        headers.forEach((header, index) => {
+          header.addEventListener("click", () => {
+            const isAsc = header.dataset.dir !== "asc";
+            const dir = isAsc ? 1 : -1;
+            headers.forEach(h => {
+              delete h.dataset.dir;
+              const arrow = h.querySelector(".arrow");
+              if (arrow) arrow.remove();
+            });
+            header.dataset.dir = isAsc ? "asc" : "desc";
+            const arrow = document.createElement("span");
+            arrow.className = "arrow";
+            arrow.textContent = isAsc ? " \\u25B2" : " \\u25BC";
+            header.appendChild(arrow);
+
+            const rows = [...tbody.rows].sort((a, b) => {
+              const av = cellValue(a, index);
+              const bv = cellValue(b, index);
+              if (av < bv) return -1 * dir;
+              if (av > bv) return 1 * dir;
+              return 0;
+            });
+            rows.forEach(row => tbody.appendChild(row));
+          });
+        });
+      </script>`);
   });
 
   return app;
