@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/this-oliver/simple-web-app/compare/v1.0.1...v1.1.0) (2026-09-12)
+
+
+### Features
+
+* filters by path and user agent ([#21](https://github.com/this-oliver/simple-web-app/issues/21)) ([9f1761c](https://github.com/this-oliver/simple-web-app/commit/9f1761ca7e9156b7ca7b8f7adbb419081eecaf2f))
+* sort by column ([#18](https://github.com/this-oliver/simple-web-app/issues/18)) ([6b72c64](https://github.com/this-oliver/simple-web-app/commit/6b72c64b2d100d09c10a29e1c905399d25e3fedd))
+* starts tracking path ([#17](https://github.com/this-oliver/simple-web-app/issues/17)) ([edf2f8c](https://github.com/this-oliver/simple-web-app/commit/edf2f8cd68040bb2ecb71278fa0cf9cd61e89dd7))
+
+
+### Bug Fixes
+
+* updates website title ([#19](https://github.com/this-oliver/simple-web-app/issues/19)) ([159260e](https://github.com/this-oliver/simple-web-app/commit/159260e36b50ed1750498f13bc284750718c6b2a))
+
 ## [1.0.1](https://github.com/this-oliver/simple-web-app/compare/v1.0.0...v1.0.1) (2026-07-29)
 
 
