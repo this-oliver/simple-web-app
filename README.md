@@ -2,7 +2,7 @@
 
 [![Security](https://github.com/this-oliver/template-js/actions/workflows/security.yaml/badge.svg)](https://github.com/this-oliver/template-js/actions/workflows/security.yaml) [![CI](https://github.com/this-oliver/template-js/actions/workflows/ci.yaml/badge.svg)](https://github.com/this-oliver/template-js/actions/workflows/ci.yaml) [![CD](https://github.com/this-oliver/template-js/actions/workflows/cd.yaml/badge.svg)](https://github.com/this-oliver/template-js/actions/workflows/cd.yaml)
 
-The purpose of this `simple-web-server` is to act as a demo application for containerized environments.
+The `simple-web-server` is a demo application for containerized environments.
 
 ## Getting Started
 
