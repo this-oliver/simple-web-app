@@ -254,14 +254,21 @@ function initApp(logfile: string): Express {
             arrow.textContent = isAsc ? " \\u25B2" : " \\u25BC";
             header.appendChild(arrow);
 
-            const rows = [...tbody.rows].sort((a, b) => {
+            const rows = [...tbody.querySelectorAll('tr:not(.filter-row)')].sort((a, b) => {
               const av = cellValue(a, index);
               const bv = cellValue(b, index);
               if (av < bv) return -1 * dir;
               if (av > bv) return 1 * dir;
               return 0;
             });
-            rows.forEach(row => tbody.appendChild(row));
+            rows.forEach(row => {
+              tbody.appendChild(row);
+              const id = row.dataset.filterTarget;
+              if (id) {
+                const detail = tbody.querySelector('tr[data-filter-source="' + id + '"]');
+                if (detail) tbody.appendChild(detail);
+              }
+            });
           });
         });
       </script>`);
