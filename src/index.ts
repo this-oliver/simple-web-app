@@ -32,6 +32,17 @@ function selectOptions(values: Array<{ value: string, label: string }>): string 
     .join("");
 }
 
+function visibleWithCount(list: string[], maxVisibleItems: number = 5): string[] {
+  if (list.length <= maxVisibleItems)
+    return list;
+  const extra = list.length - maxVisibleItems;
+  return [...list.slice(0, maxVisibleItems), `\u2026 (+${extra} more)`];
+}
+
+function formatList(items: string[], escape: (v: string) => string): string {
+  return visibleWithCount(items).map(escape).join("<br>");
+}
+
 function buildFilterDetails(entries: LogEntry[]): string {
   const comboMap = new Map<string, { path: string, ua: string, visits: LogEntry[] }>();
   for (const e of entries) {
@@ -146,9 +157,9 @@ function initApp(logfile: string): Express {
         : "";
       rows.push({
         srcIp,
-        path: distinctPaths.map(escapeHtml).join("<br>"),
+        path: formatList(distinctPaths, escapeHtml),
         visitCount: entries.length,
-        uas: distinctUas.map(escapeHtml).join("<br>"),
+        uas: formatList(distinctUas, escapeHtml),
         firstTs: entries[0].ts,
         lastTs: entries[entries.length - 1].ts,
         details
