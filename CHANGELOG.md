@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/this-oliver/simple-web-app/compare/v1.1.0...v1.1.1) (2026-09-13)
+
+
+### Bug Fixes
+
+* reduces clutter by limiting number of visible ua/paths in each row ([#22](https://github.com/this-oliver/simple-web-app/issues/22)) ([ee860b0](https://github.com/this-oliver/simple-web-app/commit/ee860b0a3228ac06536ad484019830425efd89d9))
+
 ## [1.1.0](https://github.com/this-oliver/simple-web-app/compare/v1.0.1...v1.1.0) (2026-09-12)
 
 
